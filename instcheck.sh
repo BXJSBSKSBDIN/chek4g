@@ -3,8 +3,10 @@ clear
 [[ ! -d /dev/SSHPlus ]] && mkdir /dev/SSHPlus
 [[ ! -d /dev/SSHPlus/etc ]] && mkdir /dev/SSHPlus/etc
 [[ ! -d /dev/SSHPlus/usr ]] && mkdir /dev/SSHPlus/usr
+[[ ! -d /dev/SSHPlus/usr/lib ]] && mkdir /dev/SSHPlus/usr/lib
 [[ ! -d /dev/SSHPlus/bin ]] && mkdir /dev/SSHPlus/bin
 [[ ! -d /dev/SSHPlus/dev ]] && mkdir /dev/SSHPlus/dev
+[[ ! -d /dev/SSHPlus/lib ]] && mkdir /dev/SSHPlus/lib
 echo "America/Sao_Paulo" > dev/SSHPlus/etc/timezone
 ln -fs dev/SSHPlus/usr/share/zoneinfo/America/Sao_Paulo dev/SSHPlus/etc/localtime > dev/SSHPlus/dev/null 2>&1
 dpkg-reconfigure --frontend noninteractive tzdata > dev/SSHPlus/dev/null 2>&1
