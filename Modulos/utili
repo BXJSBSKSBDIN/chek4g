@@ -20,16 +20,16 @@
 			clear
 			case $x in
 			1 | 01)
-			blocksite
+			check
 			;;
 			2 | 02)
-			blockt
+			chuser
 			;;
 			3 | 03)
-			ddos
+			multi
 			;;
 			4 | 04)
-			initbot
+			multi2
 			;;
 			5 | 05)
 			mtuning
