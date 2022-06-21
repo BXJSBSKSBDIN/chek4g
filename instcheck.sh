@@ -22,12 +22,12 @@ clear
 echo -e "\n\033[1;36mINICIANDO INSTALAÇÃO \033[1;33mAGUARDE..."
 apt-get install figlet -y > /dev/SSHPlus/null 2>&1
 pip3 install flask > /dev/SSHPlus/null 2>&1
-rm /dev/SSHPlus/bin/chuser > /dev/SSHPlus/null 2>&1
+rm /bin/chuser > /dev/null 2>&1
 sleep 5
-cd /dev/SSHPlus/bin || exit
-wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/chuser > /dev/SSHPlus/null 2>&1
+cd /bin || exit
+wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/chuser > /dev/null 2>&1
 wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/userscheck > /dev/SSHPlus/null 2>&1
-chmod 777 chuser > /dev/SSHPlus/null 2>&1
+chmod 777 chuser > /dev/null 2>&1
 chmod 777 userscheck > /dev/SSHPlus/null 2>&1
 clear
 mkdir /dev/SSHPlus/etc/rec > /dev/SSHPlus/null 2>&1
