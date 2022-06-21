@@ -18,15 +18,24 @@ rm /bin/userscheck > /dev/null 2>&1
 rm /bin/checkuser.py > /dev/null 2>&1
 rm /bin/initcheck > /dev/null 2>&1
 sleep 5
-cd /bin || exit
+[[ ! -d /run/SSHPlus ]] && mkdir /run/SSHPlus
+[[ ! -d /run/SSHPlus/v2ray ]] && mkdir /run/SSHPlus/v2ray
+[[ ! -d /run/SSHPlus/senha ]] && mkdir /run/SSHPlus/senha
+[[ ! -e /run/SSHPlus/Exp ]] && touch /run/SSHPlus/Exp
+[[ ! -d /run/SSHPlus/userteste ]] && mkdir /run/SSHPlus/userteste
+[[ ! -d /run/SSHPlus/.tmp ]] && mkdir /run/SSHPlus/.tmp
+[[ ! -d /run/bot ]] && mkdir /run/bot
+[[ ! -d /run/bot/info-users ]] && mkdir /run/bot/info-users
+[[ ! -d /run/bot/arquivos ]] && mkdir /run/bot/arquivos
+[[ ! -d /run/bot/revenda ]] && mkdir /run/bot/revenda
+[[ ! -d /run/bot/suspensos ]] && mkdir /run/bot/suspensos
+[[ ! -d /run/rec ]] && mkdir /run/rec
+[[ ! -e /run/bot/lista_ativos ]] && touch /run/bot/lista_ativos
+[[ ! -e /run/bot/lista_suspensos ]] && touch /run/bot/lista_suspensos
+echo -e 'By: @KIRITO_SSH' >/run/lib/sshplus && cat /run/lib/sshplus >$lst2/licence && cat /run/lib/sshplus > /run/SSHPlus/.tmp/crazy
+clear
 wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/initcheck > /run/null 2>&1
 chmod 777 initcheck > /run/null 2>&1
-clear
-mkdir /run/rec > /run/null 2>&1
-echo -e 'By: @KIRITO_SSH' > /run/rec/licence
-echo -e 'By: @KIRITO_SSH' > /run/lib/licence
-mkdir /run/lib/initcheck > /run/null 2>&1
-cd /run/lib/initcheck || exit
 clear
 echo -e "        \033[1;33m • \033[1;32mINSTALAÇÃO CONCLUÍDA\033[1;33m • \033[0m"
 sleep 2
