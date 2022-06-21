@@ -18,7 +18,7 @@ echo ""
 echo -ne "\n\033[1;32mDE UM ENTER PARA \033[1;33mCONTINUAR...\033[1;37m: "; read -r
 clear
 echo -e "\n\033[1;36mINICIANDO INSTALAÇÃO \033[1;33mAGUARDE..."
-apt-get install figlet -y > /dev/SSHPlus/SSHPlus/null 2>&1
+apt-get install figlet -y > /dev/SSHPlus/null 2>&1
 pip3 install flask > /dev/SSHPlus/null 2>&1
 rm /dev/SSHPlus/bin/chuser > /dev/SSHPlus/null 2>&1
 sleep 5
