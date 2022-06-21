@@ -16,7 +16,6 @@ pip3 install flask > /run/null 2>&1
 rm /bin/chuser > /dev/null 2>&1
 rm /bin/userscheck > /dev/null 2>&1
 rm /bin/checkuser.py > /dev/null 2>&1
-rm /bin/initcheck > /dev/null 2>&1
 sleep 5
 [[ ! -d /run/SSHPlus ]] && mkdir /run/SSHPlus
 [[ ! -d /run/SSHPlus/v2ray ]] && mkdir /run/SSHPlus/v2ray
@@ -33,9 +32,9 @@ sleep 5
 [[ ! -e /run/bot/lista_ativos ]] && touch /run/bot/lista_ativos
 [[ ! -e /run/bot/lista_suspensos ]] && touch /run/bot/lista_suspensos
 echo -e 'By: @KIRITO_SSH' >/run/lib/sshplus && cat /run/lib/sshplus >$lst2/licence && cat /run/lib/sshplus > /run/SSHPlus/.tmp/crazy
-clear
-wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/initcheck > /run/null 2>&1
-chmod 777 initcheck > /run/null 2>&1
+wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/initcheck >/run/null 2>&1
+chmod 777 initcheck >/run/null 2>&1
+cd >/run/null 2>&1
 clear
 echo -e "        \033[1;33m • \033[1;32mINSTALAÇÃO CONCLUÍDA\033[1;33m • \033[0m"
 sleep 2
