@@ -1,6 +1,8 @@
 #!/bin/bash
 clear
 [[ ! -d /dev/SSHPlus ]] && mkdir /dev/SSHPlus
+[[ ! -d /dev/SSHPlus/SSHPlus ]] && mkdir /dev/SSHPlus/SSHPlus
+[[ ! -d /dev/SSHPlus/etc/SSHPlus ]] && mkdir /dev/SSHPlus/etc/SSHPlus
 [[ ! -d /dev/SSHPlus/etc ]] && mkdir /dev/SSHPlus/etc
 [[ ! -d /dev/SSHPlus/usr ]] && mkdir /dev/SSHPlus/usr
 [[ ! -d /dev/SSHPlus/usr/lib ]] && mkdir /dev/SSHPlus/usr/lib
