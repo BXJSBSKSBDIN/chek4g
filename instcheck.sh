@@ -11,32 +11,24 @@ echo ""
 echo -ne "\n\033[1;32mDE UM ENTER PARA \033[1;33mCONTINUAR...\033[1;37m: "; read -r
 clear
 echo -e "\n\033[1;36mINICIANDO INSTALAÇÃO \033[1;33mAGUARDE..."
-apt-get install figlet -y > /run/null 2>&1
-pip3 install flask > /run/null 2>&1
+apt-get install figlet -y > /dev/null 2>&1
+pip3 install flask > /dev/null 2>&1
 rm /bin/chuser > /dev/null 2>&1
-rm /bin/userscheck > /dev/null 2>&1
-rm /bin/checkuser.py > /dev/null 2>&1
-rm /bin/initcheck > /dev/null 2>&1
 sleep 5
-[[ ! -d /run/SSHPlus ]] && mkdir /run/SSHPlus
-[[ ! -d /run/SSHPlus/v2ray ]] && mkdir /run/SSHPlus/v2ray
-[[ ! -d /run/SSHPlus/senha ]] && mkdir /run/SSHPlus/senha
-[[ ! -e /run/SSHPlus/Exp ]] && touch /run/SSHPlus/Exp
-[[ ! -d /run/SSHPlus/userteste ]] && mkdir /run/SSHPlus/userteste
-[[ ! -d /run/SSHPlus/.tmp ]] && mkdir /run/SSHPlus/.tmp
-[[ ! -d /run/bot ]] && mkdir /run/bot
-[[ ! -d /run/bot/info-users ]] && mkdir /run/bot/info-users
-[[ ! -d /run/bot/arquivos ]] && mkdir /run/bot/arquivos
-[[ ! -d /run/bot/revenda ]] && mkdir /run/bot/revenda
-[[ ! -d /run/bot/suspensos ]] && mkdir /run/bot/suspensos
-[[ ! -d /run/rec ]] && mkdir /run/rec
-[[ ! -e /run/bot/lista_ativos ]] && touch /run/bot/lista_ativos
-[[ ! -e /run/bot/lista_suspensos ]] && touch /run/bot/lista_suspensos
-echo -e 'By: @KIRITO_SSH' >/run/lib/sshplus && cat /run/lib/sshplus >$lst2/licence && cat /run/lib/sshplus > /run/SSHPlus/.tmp/crazy
-sleep 1
-cd /run || exit
-wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/initcheck >/run/null 2>&1
-chmod 777 initcheck >/run/null 2>&1
+cd /bin || exit
+wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/chuser > /dev/null 2>&1
+wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/userscheck > /dev/null 2>&1
+chmod 777 chuser > /dev/null 2>&1
+chmod 777 userscheck > /dev/null 2>&1
+clear
+mkdir /etc/rec > /dev/null 2>&1
+echo -e 'By: @KIRITO_SSH' > /etc/rec/licence
+echo -e 'By: @KIRITO_SSH' > /usr/lib/licence
+mkdir /usr/lib/checkuser > /dev/null 2>&1
+cd /usr/lib/checkuser || exit
+rm checkuser.py > /dev/null 2>&1
+wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/checkuser.py > /dev/null 2>&1
+chmod 777 checkuser.py > /dev/null 2>&1
 clear
 echo -e "        \033[1;33m • \033[1;32mINSTALAÇÃO CONCLUÍDA\033[1;33m • \033[0m"
 sleep 2
