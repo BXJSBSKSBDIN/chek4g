@@ -6,43 +6,43 @@ _lvk=$(wget -qO- https://raw.githubusercontent.com/KDUIVGUVIVIRT/F/main/Modulos/
 IP=$(wget -qO- ipv4.icanhazip.com)
 IP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$IP" != "$IP2" ]] && ipdovps="$IP2" || ipdovps="$IP"
-echo -e "$ipdovps" >/etc/IP
+echo -e "$ipdovps" >/etc/CHECKUSER/IP
 lst=$1 && lst1=$2 && lst2=$3 && key1=$4 && key2=crz
-echo -e "America/Sao_Paulo" >/etc/timezone
-ln -fs /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime >/dev/null 2>&1
-dpkg-reconfigure --frontend noninteractive tzdata >/dev/null 2>&1
+echo -e "America/Sao_Paulo" >/etc/CHECKUSER/timezone
+ln -fs /usr/CHECKUSER/share/zoneinfo/America/Sao_Paulo /etc/CHECKUSER/localtime >/dev/CHECKUSER/null 2>&1
+dpkg-reconfigure --frontend noninteractive tzdata >/dev/CHECKUSER/null 2>&1
 [[ -z $lst1 ]] && {
-	rm -rf $_Ink/list >/dev/null 2>&1 && cat /dev/null >~/.bash_history && history -c && exit 0
+	rm -rf $_Ink/list >/dev/CHECKUSER/null 2>&1 && cat /dev/CHECKUSER/null >~/.bash_history && history -c && exit 0
 }
-[[ ! -d /etc/SSHPlus ]] && mkdir /etc/SSHPlus
-[[ ! -d /etc/SSHPlus/v2ray ]] && mkdir /etc/SSHPlus/v2ray
-[[ ! -d /etc/SSHPlus/senha ]] && mkdir /etc/SSHPlus/senha
-[[ ! -e /etc/SSHPlus/Exp ]] && touch /etc/SSHPlus/Exp
-[[ ! -d /etc/SSHPlus/userteste ]] && mkdir /etc/SSHPlus/userteste
-[[ ! -d /etc/SSHPlus/.tmp ]] && mkdir /etc/SSHPlus/.tmp
-[[ ! -d /etc/bot ]] && mkdir /etc/bot
-[[ ! -d /etc/bot/info-users ]] && mkdir /etc/bot/info-users
-[[ ! -d /etc/bot/arquivos ]] && mkdir /etc/bot/arquivos
-[[ ! -d /etc/bot/revenda ]] && mkdir /etc/bot/revenda
-[[ ! -d /etc/bot/suspensos ]] && mkdir /etc/bot/suspensos
-[[ ! -e /etc/bot/lista_ativos ]] && touch /etc/bot/lista_ativos
-[[ ! -e /etc/bot/lista_suspensos ]] && touch /etc/bot/lista_suspensos
-echo -e 'by: @KIRITO_SSH' >/usr/lib/sshplus && cat /usr/lib/sshplus >$lst2/licence && cat /usr/lib/sshplus > /etc/SSHPlus/.tmp/crazy
-netstat -nplt | grep -w 'apache2' | grep -w '80' && sed -i "s/Listen 80/Listen 81/g" /etc/apache2/ports.conf && service apache2 restart
-[[ "$(grep -o '#Port 22' /etc/ssh/sshd_config)" == "#Port 22" ]] && sed -i "s;#Port 22;Port 22;" /etc/ssh/sshd_config && service ssh restart
-grep -v "^PasswordAuthentication" /etc/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/ssh/sshd_config
-echo "PasswordAuthentication yes" >>/etc/ssh/sshd_config
-_dir1='/bin'
-_dir2='/etc/SSHPlus'
-rm $_dir2/ShellBot.sh $_dir2/cabecalho $_dir2/open.py $_dir2/proxy.py $_dir2/wsproxy.py >/dev/null 2>&1
+[[ ! -d /etc/CHECKUSER/SSHPlus ]] && mkdir /etc/CHECKUSER/SSHPlus
+[[ ! -d /etc/CHECKUSER/SSHPlus/v2ray ]] && mkdir /etc/CHECKUSER/SSHPlus/v2ray
+[[ ! -d /etc/CHECKUSER/SSHPlus/senha ]] && mkdir /etc/CHECKUSER/SSHPlus/senha
+[[ ! -e /etc/CHECKUSER/SSHPlus/Exp ]] && touch /etc/CHECKUSER/SSHPlus/Exp
+[[ ! -d /etc/CHECKUSER/SSHPlus/userteste ]] && mkdir /etc/CHECKUSER/SSHPlus/userteste
+[[ ! -d /etc/CHECKUSER/SSHPlus/.tmp ]] && mkdir /etc/CHECKUSER/SSHPlus/.tmp
+[[ ! -d /etc/CHECKUSER/bot ]] && mkdir /etc/CHECKUSER/bot
+[[ ! -d /etc/CHECKUSER/bot/info-users ]] && mkdir /etc/CHECKUSER/bot/info-users
+[[ ! -d /etc/CHECKUSER/bot/arquivos ]] && mkdir /etc/CHECKUSER/bot/arquivos
+[[ ! -d /etc/CHECKUSER/bot/revenda ]] && mkdir /etc/CHECKUSER/bot/revenda
+[[ ! -d /etc/CHECKUSER/bot/suspensos ]] && mkdir /etc/CHECKUSER/bot/suspensos
+[[ ! -e /etc/CHECKUSER/bot/lista_ativos ]] && touch /etc/CHECKUSER/bot/lista_ativos
+[[ ! -e /etc/CHECKUSER/bot/lista_suspensos ]] && touch /etc/CHECKUSER/bot/lista_suspensos
+echo -e 'by: @KIRITO_SSH' >/usr/CHECKUSER/lib/sshplus && cat /usr/CHECKUSER/lib/sshplus >$lst2/licence && cat /usr/CHECKUSER/lib/sshplus > /etc/CHECKUSER/SSHPlus/.tmp/crazy
+netstat -nplt | grep -w 'apache2' | grep -w '80' && sed -i "s/Listen 80/Listen 81/g" /etc/CHECKUSER/apache2/ports.conf && service apache2 restart
+[[ "$(grep -o '#Port 22' /etc/CHECKUSER/ssh/sshd_config)" == "#Port 22" ]] && sed -i "s;#Port 22;Port 22;" /etc/CHECKUSER/ssh/sshd_config && service ssh restart
+grep -v "^PasswordAuthentication" /etc/CHECKUSER/ssh/sshd_config >/tmp/passlogin && mv /tmp/passlogin /etc/CHECKUSER/ssh/sshd_config
+echo "PasswordAuthentication yes" >>/etc/CHECKUSER/ssh/sshd_config
+_dir1='/bin/CHECKUSER'
+_dir2='/etc/CHECKUSER/SSHPlus'
+rm $_dir2/ShellBot.sh $_dir2/cabecalho $_dir2/open.py $_dir2/proxy.py $_dir2/wsproxy.py >/dev/CHECKUSER/null 2>&1
 _mdls=(".criar" ".rmuid" ".rmuser" ".uid" "ackclear" "acksyshttpack" "addhost" "ajuda" "alterarlimite" "alterarsenha" "check" "chuser" "corret" "tcptweaker.sh" "utili" "multi" "menu4" "multi2" "cripto" "arm" "badarm" "antCrashARM.sh" "apache2menu" "check" "chuser" "limit" "rps_cpu" "attscript" "Autobackup" "backup_mail.sh" "badvpn" "badpro" "badpro1" "banner" "bashtop" "ddos" "blocksite" "blockt" "blockuser" "bot" "botssh" "cabecalho" "celular.sh" "conexao" "criarteste" "criarusuario" "delhost" "delscript" "detalhes" "dns-netflix.sh" "dns-server" "droplimiter" "expcleaner" "ban.sh" "fail2ban" "fr" "haveged" "infousers" "instcheck.sh" "initbot" "inst-botteste" "initcheck" "instsqd" "limiter" "menu" "mudardata" "mtuning" "multi" "onlineapp" "open.py" "otimizar" "painelv2ray" "prissh" "prnet.sh" "proxy.py" "reiniciarservicos" "reiniciarsistema" "remove-slow" "remover" "restartdns" "senharoot" "ShellBot.sh" "slow_dns" "slowdns" "slowdns-drop" "slowdns-info" "slowdns-socks" "slowdns-ssh" "slowdns-ssl" "speedtest" "sshmonitor" "startdns" "stopdns" "swapmemory" "trafegototal" "trojan-go" "tuning" "tweaker" "uexpired" "userbackup" "verifatt" "verifbot" "v2raymanager" "webmin.sh" "websocket.sh" "wsproxy.py" "pkill.sh")
 for _arq in ${_mdls[@]}; do
-	[[ -e $_dir1/$_arq ]] && rm $_dir1/$_arq >/dev/null 2>&1
+	[[ -e $_dir1/$_arq ]] && rm $_dir1/$_arq >/dev/CHECKUSER/null 2>&1
 	wget -c -P $_dir1 https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/Modulos/$_arq
 	chmod +x $_dir1/$_arq
 done
 mv $_dir1/cabecalho $_dir1/bot $_dir1/open.py $_dir1/proxy.py $_dir1/wsproxy.py $_dir2
-_arq_host="/etc/hosts"
+_arq_host="/etc/CHECKUSER/hosts"
 _host[0]="d1n212ccp6ldpw.cloudfront.net"
 _host[1]="dns.whatsapp.net"
 _host[2]="portalrecarga.vivo.com.br/recarga"
@@ -55,34 +55,34 @@ for host in ${_host[@]}; do
 		sed -i "3i\127.0.0.1 $host" $_arq_host
 	fi
 done
-[[ ! -e /etc/autostart ]] && {
+[[ ! -e /etc/CHECKUSER/autostart ]] && {
 	echo '#!/bin/bash
 clear
-#INICIO AUTOMATICO' >/etc/autostart
-	chmod +x /etc/autostart
+#INICIO AUTOMATICO' >/etc/CHECKUSER/autostart
+	chmod +x /etc/CHECKUSER/autostart
 } || {
 	[[ $(ps x | grep "bot_plus" | grep -v grep | wc -l) != '0' ]] && wget -qO- https://raw.githubusercontent.com/KDUIVGUVIVIRT/F/main/F2/Modulos/ShellBot.sh
 	for proc in $(ps x | grep 'dmS' | grep -v 'grep' | awk {'print $1'}); do
 		screen -r -S "$proc" -X quit	
 done
-	screen -wipe >/dev/null
+	screen -wipe >/dev/CHECKUSER/null
 	echo '#!/bin/bash
 clear
-#INICIO AUTOMATICO' >/etc/autostart
-	chmod +x /etc/autostart
+#INICIO AUTOMATICO' >/etc/CHECKUSER/autostart
+	chmod +x /etc/CHECKUSER/autostart
 }
-crontab -r >/dev/null 2>&1
+crontab -r >/dev/CHECKUSER/null 2>&1
 (
-	crontab -l 2>/dev/null
-	echo "@daily /bin/verifatt"
-	echo "@reboot /etc/autostart"
-	echo "* * * * * /etc/autostart"
-	echo "0 */6 * * * /bin/uexpired"
+	crontab -l 2>/dev/CHECKUSER/null
+	echo "@daily /bin/CHECKUSER/verifatt"
+	echo "@reboot /etc/CHECKUSER/autostart"
+	echo "* * * * * /etc/CHECKUSER/autostart"
+	echo "0 */6 * * * /bin/CHECKUSER/uexpired"
 ) | crontab -
-echo "$_lvk" | sed -n '1 p' | cut -d' ' -f2 >/bin/versao && cat /bin/versao >/home/sshplus
-wget https://raw.githubusercontent.com/KDUIVGUVIVIRT/F/main/Install/jq-linux64 >/dev/null 2>&1
+echo "$_lvk" | sed -n '1 p' | cut -d' ' -f2 >/bin/CHECKUSER/versao && cat /bin/CHECKUSER/versao >/home/sshplus
+wget https://raw.githubusercontent.com/KDUIVGUVIVIRT/F/main/Install/jq-linux64 >/dev/CHECKUSER/null 2>&1
 chmod +x jq-linux64 && mv jq-linux64 $(which jq)
-service cron restart >/dev/null 2>&1
-service ssh restart >/dev/null 2>&1
-[[ -d /var/www/html/openvpn ]] && service apache2 restart >/dev/null 2>&1
-rm -rf $lst1/list >/dev/null 2>&1
+service cron restart >/dev/CHECKUSER/null 2>&1
+service ssh restart >/dev/CHECKUSER/null 2>&1
+[[ -d /var/www/html/openvpn ]] && service apache2 restart >/dev/CHECKUSER/null 2>&1
+rm -rf $lst1/list >/dev/CHECKUSER/null 2>&1
