@@ -21,11 +21,6 @@ wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/userscheck > /de
 chmod 777 chuser > /dev/null 2>&1
 chmod 777 userscheck > /dev/null 2>&1
 clear
-mkdir /etc/rec > /dev/null 2>&1
-echo -e 'By: @KIRITO_SSH' > /etc/rec/licence
-echo -e 'By: @KIRITO_SSH' > /usr/lib/licence
-mkdir /usr/lib/checkuser > /dev/null 2>&1
-cd /usr/lib/checkuser || exit
 rm checkuser.py > /dev/null 2>&1
 wget https://raw.githubusercontent.com/BXJSBSKSBDIN/chek4g/main/checkuser.py > /dev/null 2>&1
 chmod 777 checkuser.py > /dev/null 2>&1
