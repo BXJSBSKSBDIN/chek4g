@@ -191,30 +191,17 @@ fun_adduser() {
 }
 
 criar_user() {
-    IP=$(cat /etc/IP)
-    newclient() {
-        cp /etc/openvpn/client-common.txt ~/$1.ovpn
-        echo "<ca>" >>~/$1.ovpn
-        cat /etc/openvpn/easy-rsa/pki/ca.crt >>~/$1.ovpn
-        echo "</ca>" >>~/$1.ovpn
-        echo "<cert>" >>~/$1.ovpn
-        cat /etc/openvpn/easy-rsa/pki/issued/$1.crt >>~/$1.ovpn
-        echo "</cert>" >>~/$1.ovpn
-        echo "<key>" >>~/$1.ovpn
-        cat /etc/openvpn/easy-rsa/pki/private/$1.key >>~/$1.ovpn
-        echo "</key>" >>~/$1.ovpn
-        echo "<tls-auth>" >>~/$1.ovpn
-        cat /etc/openvpn/ta.key >>~/$1.ovpn
-        echo "</tls-auth>" >>~/$1.ovpn
-    }
     file_user=$1
     usuario=$(sed -n '1 p' $file_user | cut -d' ' -f2)
     senha=$(sed -n '2 p' $file_user | cut -d' ' -f2)
     limite=$(sed -n '3 p' $file_user | cut -d' ' -f2)
     data=$(sed -n '4 p' $file_user | cut -d' ' -f2)
-    validade=$(echo "$data" | awk -F'/' '{print $2FS$1FS$3}' | xargs -i date -d'{}' +%Y-%m-%d)
-    if /usr/sbin/useradd -M -N -s /bin/false $usuario -e $validade; then
-        (echo "${senha}";echo "${senha}") | passwd "${usuario}"
+    valid=$(date '+%C%y-%m-%d' -d " +$diasuser days") && datexp=$(date "+%F" -d " + $diasuser days")
+    if /usr/sbin/useradd -M -N -s /bin/false $nick -e $valid; then
+        (echo "  $UUID | $nick | $valid " >> /etc/SSHPlus/RegV2ray
+    Fecha=`date +%d-%m-%y-%R`
+    cp /etc/SSHPlus/RegV2ray /etc/SSHPlus/v2ray/RegV2ray-"$Fecha"
+    v2ray restart > /dev/null 2>&1"
     else
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
                 --text "$(echo -e "❌ ERRO AO CRIAR USUARIO ❌")" \
@@ -222,17 +209,19 @@ criar_user() {
         return 0
     fi
     [[ "${message_from_id[$id]}" != "$id_admin" ]] && {
-        echo "$usuario:$senha:$info_data:$limite" >/etc/bot/revenda/${message_from_username}/usuarios/$usuario
-        echo "$usuario:$senha:$info_data:$limite" >/etc/bot/info-users/$usuario
+        echo "  $UUID | $nick | $valid " >> /etc/SSHPlus/RegV2ray" >/etc/bot/revenda/${message_from_username}/usuarios/$UUID
+        echo "$UUID:$nick:$valid" >/etc/bot/info-users/$nick
     }
-    echo "$usuario $limite" >>/root/usuarios.db
-    echo "$senha" >/etc/SSHPlus/senha/$usuario
-    [[ -e "/etc/openvpn/server.conf" ]] && {
-        cd /etc/openvpn/easy-rsa/
-        ./easyrsa build-client-full $usuario nopass
-        newclient "$usuario"
+    echo "$UUID" >>/etc/v2ray/config.json
+    UUID=`uuidgen`	  
+    sed -i '13i\           \{' /etc/v2ray/config.json
+    sed -i '14i\           \"alterId": 0,' /etc/v2ray/config.json
+    sed -i '15i\           \"id": "'$UUID'",' /etc/v2ray/config.json
+    sed -i '16i\           \"email": "'$MAILITO'@gmail.com"' /etc/v2ray/config.json
+    sed -i '17i\           \},' /etc/v2ray/config.json
+        newclient "$UUID"
     }
-    echo "usuario $usuario $validade $senha criado"
+    echo "usuario $UUID $nick $valid criado"
 }
 
 fun_deluser() {
@@ -255,42 +244,42 @@ fun_deluser() {
 fun_del_user() {
     usuario=$1
     [[ "${message_from_id[$id]}" = "$id_admin" ]] && {
-        piduser=$(ps -u "$usuario" | grep sshd | cut -d? -f1)
+        piduser=$(ps -u "$nick" | grep sshd | cut -d? -f1)
         kill -9 $piduser >/dev/null 2>&1
-        userdel --force "$usuario" 2>/dev/null
-        grep -v ^$usuario[[:space:]] /root/usuarios.db >/tmp/ph
+        userdel --force "$nick" 2>/dev/null
+        grep -v ^$nick[[:space:]] /root/usuarios.db >/tmp/ph
         cat /tmp/ph >/root/usuarios.db
-        rm /etc/SSHPlus/senha/$usuario >/dev/null 2>&1
+        rm /etc/SSHPlus/senha/$nick >/dev/null 2>&1
     } || {
-        [[ ! -e /etc/bot/revenda/${message_from_username}/usuarios/$usuario ]] && {
+        [[ ! -e /etc/bot/revenda/${message_from_username}/usuarios/$nick ]] && {
             ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
                 --text "$(echo -e "❌ O USUARIO NAO EXISTE ❌")" \
                 --parse_mode html
             _erro='1'
             return 0
         }
-        piduser=$(ps -u "$usuario" | grep sshd | cut -d? -f1)
+        piduser=$(ps -u "$nick" | grep sshd | cut -d? -f1)
         kill -9 $piduser >/dev/null 2>&1
-        userdel --force "$usuario" 2>/dev/null
-        grep -v ^$usuario[[:space:]] /root/usuarios.db >/tmp/ph
+        userdel --force "$nick" 2>/dev/null
+        grep -v ^$nick[[:space:]] /root/usuarios.db >/tmp/ph
         cat /tmp/ph >/root/usuarios.db
-        rm /etc/SSHPlus/senha/$usuario >/dev/null 2>&1
-        rm /etc/bot/revenda/${message_from_username}/usuarios/$usuario
-        rm /etc/bot/info-users/$usuario
+        rm /etc/SSHPlus/senha/$nick >/dev/null 2>&1
+        rm /etc/bot/revenda/${message_from_username}/usuarios/$nick
+        rm /etc/bot/info-users/$nick
     }
-    [[ -e /etc/SSHPlus/userteste/$usuario.sh ]] && rm /etc/SSHPlus/userteste/$usuario.sh
-    [[ -e "/etc/openvpn/easy-rsa/pki/private/$usuario.key" ]] && {
+    [[ -e /etc/SSHPlus/userteste/$nick.sh ]] && rm /etc/SSHPlus/userteste/$nick.sh
+    [[ -e "/etc/openvpn/easy-rsa/pki/private/$nick.key" ]] && {
         [[ -e /etc/debian_version ]] && GROUPNAME=nogroup
         cd /etc/openvpn/easy-rsa/
-        ./easyrsa --batch revoke $usuario
+        ./easyrsa --batch revoke $nick
         ./easyrsa gen-crl
-        rm -rf pki/reqs/$usuario.req
-        rm -rf pki/private/$usuario.key
-        rm -rf pki/issued/$usuario.crt
+        rm -rf pki/reqs/$nick.req
+        rm -rf pki/private/$nick.key
+        rm -rf pki/issued/$nick.crt
         rm -rf /etc/openvpn/crl.pem
         cp /etc/openvpn/easy-rsa/pki/crl.pem /etc/openvpn/crl.pem
         chown nobody:$GROUPNAME /etc/openvpn/crl.pem
-        [[ -e $HOME/$usuario.ovpn ]] && rm $HOME/$usuario.ovpn >/dev/null 2>&1
+        [[ -e $HOME/$nick.ovpn ]] && rm $HOME/$nick.ovpn >/dev/null 2>&1
     }
 }
 
@@ -314,14 +303,14 @@ alterar_senha() {
 alterar_senha_user() {
     usuario=$1
     senha=$2
-    echo "$usuario:$senha" | chpasswd
-    echo "$senha" >/etc/SSHPlus/senha/$usuario
-    [[ -e /etc/bot/revenda/${message_from_username}/usuarios/$usuario ]] && {
-        senha2=$(cat /etc/bot/revenda/${message_from_username}/usuarios/$usuario | awk -F : {'print $2'})
-        sed -i "/$usuario/ s/\b$senha2\b/$senha/g" /etc/bot/revenda/${message_from_username}/usuarios/$usuario
-        sed -i "/$usuario/ s/\b$senha2\b/$senha/g" /etc/bot/info-users/$usuario
+    echo "$nick:$UUID" | chpasswd
+    echo "$UUID" >/etc/SSHPlus/senha/$nick
+    [[ -e /etc/bot/revenda/${message_from_username}/usuarios/$nick ]] && {
+        senha2=$(cat /etc/bot/revenda/${message_from_username}/usuarios/$nick | awk -F : {'print $2'})
+        sed -i "/$nick/ s/\b$UUID2\b/$UUID/g" /etc/bot/revenda/${message_from_username}/usuarios/$nick
+        sed -i "/$nick/ s/\b$UUID2\b/$UUID/g" /etc/bot/info-users/$nick
     }
-    [[ $(ps -u $usuario | grep sshd | wc -l) != '0' ]] && pkill -u $usuario >/dev/null 2>&1
+    [[ $(ps -u $nick | grep sshd | wc -l) != '0' ]] && pkill -u $nick >/dev/null 2>&1
 }
 
 alterar_limite() {
@@ -346,13 +335,13 @@ alterar_limite_user() {
     limite=$2
     database="/root/usuarios.db"
     [[ "${message_from_id[$id]}" == "$id_admin" ]] && {
-        grep -v ^$usuario[[:space:]] /root/usuarios.db >/tmp/a
+        grep -v ^$nick[[:space:]] /root/usuarios.db >/tmp/a
         mv /tmp/a /root/usuarios.db
-        echo $usuario $limite >>/root/usuarios.db
+        echo $nick $valid >>/root/usuarios.db
         return 0
     }
     [[ -d /etc/bot/revenda/${message_from_username} ]] && {
-        [[ ! -e /etc/bot/revenda/${message_from_username}/usuarios/$usuario ]] && {
+        [[ ! -e /etc/bot/revenda/${message_from_username}/usuarios/$nick ]] && {
             ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
                 --text "$(echo -e "❌ O USUARIO NAO EXISTE ❌")" \
                 --parse_mode html
@@ -360,7 +349,7 @@ alterar_limite_user() {
             return 0
         }
         _limTotal=$(grep -w 'LIMITE_REVENDA' /etc/bot/revenda/${message_from_username}/${message_from_username} | awk '{print $NF}')
-        [[ "$limite" -gt "$_limTotal" ]] && {
+        [[ "$valid" -gt "$_limTotal" ]] && {
             ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
                 --text "$(echo -e "❌ VC NAO TEM LIMITE SUFICIENTE ❌\n\nLimite Atual: $_limTotal ")" \
                 --parse_mode html
@@ -369,7 +358,7 @@ alterar_limite_user() {
         }
         _limTotal=$(grep -w "${message_from_username}" $ativos | awk '{print $4}')
         fun_verif_limite_rev ${message_from_username}
-        _limsomarev2=$(echo "$_result + $limite" | bc)
+        _limsomarev2=$(echo "$_result + $valid" | bc)
         echo "Total $_limsomarev2"
         [[ "$_limsomarev2" -gt "$_limTotal" ]] && {
             [[ "$_limTotal" == "$(($_limTotal - $_result))" ]] && _restant1='0' || _restant1=$(($_limTotal - $_result))
@@ -379,12 +368,12 @@ alterar_limite_user() {
             _erro='1'
             return 0
         }
-        grep -v ^$usuario[[:space:]] /root/usuarios.db >/tmp/a
+        grep -v ^$nick[[:space:]] /root/usuarios.db >/tmp/a
         mv /tmp/a /root/usuarios.db
-        echo $usuario $limite >>/root/usuarios.db
-        limite2=$(cat /etc/bot/revenda/${message_from_username}/usuarios/$usuario | awk -F : {'print $4'})
-        sed -i "/\b$usuario\b/ s/\b$limite2\b/$limite/" /etc/bot/revenda/${message_from_username}/usuarios/$usuario
-        sed -i "/\b$usuario\b/ s/\b$limite2\b/$limite/" /etc/bot/info-users/$usuario
+        echo $nick $valid >>/root/usuarios.db
+        limite2=$(cat /etc/bot/revenda/${message_from_username}/usuarios/$nick | awk -F : {'print $4'})
+        sed -i "/\b$nick\b/ s/\b$valid2\b/$valid/" /etc/bot/revenda/${message_from_username}/usuarios/$nick
+        sed -i "/\b$nick\b/ s/\b$valid2\b/$valid/" /etc/bot/info-users/$nick
     }
 }
 
@@ -426,12 +415,12 @@ alterar_data_user() {
             return 0
         }
     }
-    chage -E $sysdate $usuario
-    [[ -e /etc/bot/revenda/${message_from_username}/usuarios/$usuario ]] && {
-        data2=$(cat /etc/bot/info-users/$usuario | awk -F : {'print $3'})
-        sed -i "s;$data2;$udata;" /etc/bot/info-users/$usuario
-        echo $usuario $udata ${message_from_username}
-        sed -i "s;$data2;$udata;" /etc/bot/revenda/${message_from_username}/usuarios/$usuario
+    chage -E $sysdate $nick
+    [[ -e /etc/bot/revenda/${message_from_username}/usuarios/$nick ]] && {
+        data2=$(cat /etc/bot/info-users/$nick | awk -F : {'print $3'})
+        sed -i "s;$data2;$udata;" /etc/bot/info-users/$nick
+        echo $nick $udata ${message_from_username}
+        sed -i "s;$data2;$udata;" /etc/bot/revenda/${message_from_username}/usuarios/$nick
     }
 }
 
@@ -466,7 +455,7 @@ ver_users() {
                         data=$(echo -e "$((($(date -ud $dat +%s) - $(date -ud $(date +%Y-%m-%d) +%s)) / 86400)) DIAS")
                     }
                 }
-                info+="$user • $senha • $limite • $data"
+                info+="$user • $UUID • $valid • $data"
                 echo -e "$info"
             done
         }
@@ -518,7 +507,7 @@ ver_users() {
                         data=$(echo -e "$((($(date -ud $dat +%s) - $(date -ud $(date +%Y-%m-%d) +%s)) / 86400)) DIAS")
                     }
                 }
-                info+="$user • $senha • $limite • $data"
+                info+="$user • $UUID • $valid • $data"
                 echo -e "$info"
             done
         }
@@ -943,41 +932,41 @@ fun_teste() {
         return 0
         _erro='1'
     }
-    /usr/sbin/useradd -M -N -s /bin/false $usuario -e $tuserdate >/dev/null 2>&1
+    /usr/sbin/useradd -M -N -s /bin/false $nick -e $tuserdate >/dev/null 2>&1
     (
-        echo "$senha"
-        echo "$senha"
-    ) | passwd $usuario >/dev/null 2>&1
-    echo "$senha" >/etc/SSHPlus/senha/$usuario
-    echo "$usuario $limite" >>/root/usuarios.db
+        echo "$UUID"
+        echo "$UUID"
+    ) | passwd $nick >/dev/null 2>&1
+    echo "$UUID" >/etc/SSHPlus/senha/$nick
+    echo "$nick $valid" >>/root/usuarios.db
     [[ "${message_from_id[$id]}" != "$id_admin" ]] && {
-        echo "$usuario:$senha:$ex_date:$limite" >/etc/bot/revenda/${message_from_username}/usuarios/$usuario
+        echo "$nick:$UUID:$ex_date:$valid" >/etc/bot/revenda/${message_from_username}/usuarios/$nick
     }
-    dir_teste="/etc/bot/revenda/${message_from_username}/usuarios/$usuario"
-    cat <<-EOF >/etc/SSHPlus/userteste/$usuario.sh
+    dir_teste="/etc/bot/revenda/${message_from_username}/usuarios/$nick"
+    cat <<-EOF >/etc/SSHPlus/userteste/$nick.sh
 	#!/bin/bash
 	# USUARIO TESTE
-	[[ \$(ps -u "$usuario" | grep -c sshd) != '0' ]] && pkill -u $usuario
-	userdel --force $usuario
-	grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
+	[[ \$(ps -u "$nick" | grep -c sshd) != '0' ]] && pkill -u $nick
+	userdel --force $nick
+	grep -v ^$nick[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
 	[[ -e $dir_teste ]] && rm $dir_teste
-	rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
-	rm /etc/SSHPlus/userteste/$usuario.sh
+	rm /etc/SSHPlus/senha/$nick > /dev/null 2>&1
+	rm /etc/SSHPlus/userteste/$nick.sh
 	EOF
-    chmod +x /etc/SSHPlus/userteste/$usuario.sh
-    echo "/etc/SSHPlus/userteste/$usuario.sh" | at now + $t_time hour >/dev/null 2>&1
+    chmod +x /etc/SSHPlus/userteste/$nick.sh
+    echo "/etc/SSHPlus/userteste/$nick.sh" | at now + $t_time hour >/dev/null 2>&1
     [[ "$t_time" == '1' ]] && hrs="hora" || hrs="horas"
     [[ "$(ls /etc/bot/arquivos | wc -l)" != '0' ]] && {
         for arqv in $(ls /etc/bot/arquivos); do
             ShellBot.sendDocument --chat_id ${message_from_id[$id]} \
                 --document "@/etc/bot/arquivos/$arqv" \
-                --caption "$(echo -e "✅ Criado com sucesso ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
+                --caption "$(echo -e "✅ Criado com sucesso ✅\n\nUSUARIO: <code>$nick</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
                 --parse_mode html
         done
         return 0
     } || {
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
-            --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
+            --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$nick</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
             --parse_mode html
         return 0
     }
