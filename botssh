@@ -33,11 +33,11 @@ criarteste() {
       return 0
     }
     usuario=$(echo teste$((RANDOM % +999)))
-    senha='1234'
+    senha='12345'
     limite='1'
     t_time='1'
-    ex_date=$(date '+%d/%m/%C%y' -d " +2 days")
-    tuserdate=$(date '+%C%y/%m/%d' -d " +2 days")
+    ex_date=$(date '+%d/%m/%C%y' -d " +1 days")
+    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
     useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
     (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
     echo "$senha" > /etc/SSHPlus/senha/$usuario
@@ -53,7 +53,7 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $t_time $hrs")" \
+    --text "$(echo -e "――――――――――――――――\n✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $t_time $hrs\n――――――――――――――――")" \
     --parse_mode html
     return 0
 }
@@ -91,7 +91,7 @@ while :; do
    	echo ' ' > lista
    }
   #Obtem as atualizações
-    ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 35
+    ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 1
   for id in $(ShellBot.ListUpdates); do
     (
       ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
