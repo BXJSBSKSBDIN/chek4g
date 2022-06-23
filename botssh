@@ -15,7 +15,7 @@ ShellBot.username
 menu() {
     local msg
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
-        --text "💬" \
+        --text "https://t.me/alfainternet/204" \
         msg="――――――――――――――――\n"
         msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
         msg+="――――――――――――――――\n\n"
