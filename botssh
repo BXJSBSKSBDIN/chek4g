@@ -15,9 +15,9 @@ ShellBot.username
 menu() {
     local msg
         msg="――――――――――――――――\n"
-        msg+="<b>𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
+        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
         msg+="――――――――――――――――\n\n"
-        msg+="Gere seu teste agora mesmo!"
+        msg+="Gere seu teste agora mesmo !"
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
         --text "$(echo -e $msg)" \
         --reply_markup "$keyboard1" \
@@ -35,7 +35,7 @@ criarteste() {
     usuario=$(echo teste$((RANDOM % +999)))
     senha='12345'
     limite='1'
-    t_time=$1
+    t_time='1'
     ex_date=$(date '+%d/%m/%C%y' -d " +1 days")
     tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
     useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
@@ -49,18 +49,18 @@ grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/u
 rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
 rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     chmod +x /etc/SSHPlus/userteste/$usuario.sh
-    at -f /etc/SSHPlus/userteste/$usuario.sh now + $t_time hour > /dev/null 2>&1
+    at -f /etc/SSHPlus/userteste/$usuario.sh now + t_time=$ hour > /dev/null 2>&1
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $tempo Hora")" \
+    --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: t_time=$ Hora")" \
     --parse_mode html
 }
 
 #enviar app
 enviarapp() {
     ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-        --text "♻️ ENVIANDO APLICATIVO, AGUARDE..."
+        --text "♻️ ENVIANDO APLICATIVO..."
     ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
         --document "@/root/app.apk" \
     return 0
@@ -78,8 +78,8 @@ infouser () {
 
 unset botao1
 botao1=''
-ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '♻️ GERAR TESTE ♻️' --callback_data 'gerarssh'
-ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '🔰 BAIXAR APLICATIVO 🔰' --callback_data 'appenviar'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 1 --text '♻️  GERAR TESTE  ♻️' --callback_data 'gerarssh'
+ShellBot.InlineKeyboardButton --button 'botao1' --line 3 --text '🔰  BAIXAR APLICATIVO  🔰' --callback_data 'appenviar'
 ShellBot.regHandleFunction --function criarteste --callback_data gerarssh
 ShellBot.regHandleFunction --function enviarapp --callback_data appenviar
 unset keyboard1
