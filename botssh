@@ -48,11 +48,9 @@ pkill -f "$usuario"
 userdel --force $usuario
 grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
 rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
-	rm /etc/SSHPlus/userteste/$usuario.sh
-	EOF
+rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     chmod +x /etc/SSHPlus/userteste/$usuario.sh
-    echo "/etc/SSHPlus/userteste/$usuario.sh" | at now + $t_time hour >/dev/null 2>&1
-    [[ "$t_time" == '1' ]] && hrs="hora" || hrs="horas"
+    at -f /etc/SSHPlus/userteste/$usuario.sh now + $t_time hour > /dev/null 2>&1
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
