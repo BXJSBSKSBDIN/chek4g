@@ -14,10 +14,10 @@ ShellBot.username
 # - Funcao menu
 menu() {
     local msg
-        msg="🤖"
-    local msg
+        ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+        --text "🤖" \
         msg="――――――――――――――――\n"
-        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧e</b>\n"
+        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧1</b>\n"
         msg+="――――――――――――――――\n\n"
         msg+="Gere seu teste agora mesmo!"
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
