@@ -15,9 +15,9 @@ ShellBot.username
 menu() {
     local msg
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
-        --text "  💬" \
+        --text "💬" \
         msg="――――――――――――――――\n"
-        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
+        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧1</b>\n"
         msg+="――――――――――――――――\n\n"
         msg+="Gere seu teste agora mesmo!"
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
@@ -54,6 +54,8 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
     at -f /etc/SSHPlus/userteste/$usuario.sh now + $t_time hour > /dev/null 2>&1
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
+    ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+        --text "💬" \
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
     --text "$(echo -e "――――――――――――――――\n✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $t_time $hrs\n――――――――――――――――")" \
     --parse_mode html
