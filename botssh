@@ -15,9 +15,9 @@ ShellBot.username
 menu() {
     local msg
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
-        --text "🤖" \
+        --text "  💬" \
         msg="――――――――――――――――\n"
-        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧1</b>\n"
+        msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
         msg+="――――――――――――――――\n\n"
         msg+="Gere seu teste agora mesmo!"
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
