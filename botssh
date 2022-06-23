@@ -33,28 +33,55 @@ criarteste() {
       return 0
     }
     usuario=$(echo teste$((RANDOM % +999)))
-    senha='12345'
+    senha='1234'
     limite='1'
     t_time='1'
-    ex_date=$(date '+%d/%m/%C%y' -d " +1 days")
-    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
-    useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
-    (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
-    echo "$senha" > /etc/SSHPlus/senha/$usuario
-    echo "$usuario $limite" >> /root/usuarios.db
-    echo "#!/bin/bash
-pkill -f "$usuario"
-userdel --force $usuario
-grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
-rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
-rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
+    ex_date=$(date '+%d/%m/%C%y' -d " +2 days")
+    tuserdate=$(date '+%C%y/%m/%d' -d " +2 days")
+    [[ -z $t_time ]] && {
+        ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+            --text "$(echo -e "❌ Erro tente novamente")" \
+            --parse_mode html
+        return 0
+        _erro='1'
+    }
+    /usr/sbin/useradd -M -N -s /bin/false $usuario -e $tuserdate >/dev/null 2>&1
+    (
+        echo "$senha"
+        echo "$senha"
+    ) | passwd $usuario >/dev/null 2>&1
+    echo "$senha" >/etc/SSHPlus/senha/$usuario
+    echo "$usuario $limite" >>/root/usuarios.db
+    [[ "${message_from_id[$id]}" != "$id_admin" ]] && {
+        echo "$usuario:$senha:$ex_date:$limite" >/etc/bot/revenda/${message_from_username}/usuarios/$usuario
+    }
+    dir_teste="/etc/bot/revenda/${message_from_username}/usuarios/$usuario"
+    cat <<-EOF >/etc/SSHPlus/userteste/$usuario.sh
+	#!/bin/bash
+	# USUARIO TESTE
+	[[ \$(ps -u "$usuario" | grep -c sshd) != '0' ]] && pkill -u $usuario
+	userdel --force $usuario
+	grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
+	[[ -e $dir_teste ]] && rm $dir_teste
+	rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
+	rm /etc/SSHPlus/userteste/$usuario.sh
+	EOF
     chmod +x /etc/SSHPlus/userteste/$usuario.sh
-    at -f /etc/SSHPlus/userteste/$usuario.sh now + $t_time hour > /dev/null 2>&1
-    echo ${callback_query_from_id} >> lista
-    # - ENVIA O SSH
-    ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-    --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>$senha</code>\n\n⏳ Expira em: $t_time Hora")" \
-    --parse_mode html
+    echo "/etc/SSHPlus/userteste/$usuario.sh" | at now + $t_time hour >/dev/null 2>&1
+    [[ "$t_time" == '1' ]] && hrs="hora" || hrs="horas"
+    [[ "$(ls /etc/bot/arquivos | wc -l)" != '0' ]] && {
+        for arqv in $(ls /etc/bot/arquivos); do
+            ShellBot.sendDocument --chat_id ${message_from_id[$id]} \
+                --document "@/etc/bot/arquivos/$arqv" \
+                --caption "$(echo -e "✅ Criado com sucesso ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
+                --parse_mode html
+        done
+        return 0
+    } || {
+        ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
+            --text "$(echo -e "✅ <b>Criado com sucesso</b> ✅\n\nUSUARIO: <code>$usuario</code>\nSENHA: <code>1234</code>\n\n⏳ Expira em: $t_time $hrs")" \
+            --parse_mode html
+        return 0
 }
 
 #enviar app
