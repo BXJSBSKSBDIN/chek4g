@@ -90,7 +90,8 @@ while :; do
    	echo $(date +%d) > RESET
    	echo ' ' > lista
    }
-  ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 1
+  #Obtem as atualizações
+    ShellBot.getUpdates --limit 100 --offset $(ShellBot.OffsetNext) --timeout 35
   for id in $(ShellBot.ListUpdates); do
     (
       ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
