@@ -14,7 +14,7 @@ ShellBot.username
 # - Funcao menu
 menu() {
     local msg
-        msg+="<b> 🤖 </b>\n"
+        msg+="<b>🤖\n"
         msg="=×=×=×=×=×=×=×=×=×=×=×=×=×=\n"
         msg+="<b>OLA SEJA BEM VINDO(a)</b>\n"
         msg+="=×=×=×=×=×=×=×=×=×=×=×=×=×=\n\n"
@@ -33,11 +33,12 @@ criarteste() {
         --text "⚠️ VC JA CRIOU SSH HOJE ⚠️"
       return 0
     }
-    usuario=$(echo TESTE$(( RANDOM% + 999 )))
-    senha=$((RANDOM% + 999999))
+    usuario=$(echo teste$((RANDOM % +999)))
+    senha='12345'
     limite='1'
-    tempo='1'
-    tuserdate=$(date '+%C%y/%m/%d' -d " +1 days")
+    t_time=$1
+    ex_date=$(date '+%d/%m/%C%y' -d " +2 days")
+    tuserdate=$(date '+%C%y/%m/%d' -d " +2 days")
     useradd -M -N -s /bin/false $usuario -e $tuserdate > /dev/null 2>&1
     (echo "$senha";echo "$senha") | passwd $usuario > /dev/null 2>&1
     echo "$senha" > /etc/SSHPlus/senha/$usuario
@@ -47,9 +48,11 @@ pkill -f "$usuario"
 userdel --force $usuario
 grep -v ^$usuario[[:space:]] /root/usuarios.db > /tmp/ph ; cat /tmp/ph > /root/usuarios.db
 rm /etc/SSHPlus/senha/$usuario > /dev/null 2>&1
-rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
+	rm /etc/SSHPlus/userteste/$usuario.sh
+	EOF
     chmod +x /etc/SSHPlus/userteste/$usuario.sh
-    at -f /etc/SSHPlus/userteste/$usuario.sh now + $tempo hour > /dev/null 2>&1
+    echo "/etc/SSHPlus/userteste/$usuario.sh" | at now + $t_time hour >/dev/null 2>&1
+    [[ "$t_time" == '1' ]] && hrs="hora" || hrs="horas"
     echo ${callback_query_from_id} >> lista
     # - ENVIA O SSH
     ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
