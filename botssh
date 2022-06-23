@@ -16,7 +16,7 @@ menu() {
     local msg
         ShellBot.sendMessage --chat_id ${message_chat_id[$id]} \
         --text "https://t.me/alfainternet/204" \
-        msg="――――――――――――――――\n"
+        msg+="――――――――――――――――\n"
         msg+="<b>  𝗕𝗘𝗠 𝗩𝗜𝗡𝗗𝗢ª 𝗔𝗢 𝗕𝗢𝗧</b>\n"
         msg+="――――――――――――――――\n\n"
         msg+="Gere seu teste agora mesmo!"
@@ -31,7 +31,7 @@ menu() {
 criarteste() {
     [[ $(grep -wc ${callback_query_from_id} lista) != '0' ]] && {
       ShellBot.sendMessage --chat_id ${callback_query_message_chat_id} \
-        --text "⚠️ VC JA CRIOU SSH HOJE ⚠️"
+        --text "⚠️ VC JA CRIOU SEU TESTE HOJE ⚠️"
       return 0
     }
     usuario=$(echo teste$((RANDOM % +999)))
@@ -63,7 +63,7 @@ rm -rf /etc/SSHPlus/userteste/$usuario.sh" > /etc/SSHPlus/userteste/$usuario.sh
 #enviar app
 enviarapp() {
     ShellBot.answerCallbackQuery --callback_query_id ${callback_query_id[$id]} \
-        --text "♻️ ENVIANDO APLICATIVO, AGUARDE..."
+        --text "♻️ ENVIANDO APLICATIVO..."
     ShellBot.sendDocument --chat_id ${callback_query_message_chat_id} \
         --document "@/root/app.apk" \
     return 0
@@ -93,7 +93,7 @@ while :; do
    	echo ' ' > lista
    }
   #Obtem as atualizações
-    ShellBot.getUpdates --limit 3 --offset $(ShellBot.OffsetNext) --timeout 1
+    ShellBot.getUpdates --limit 1000 --offset $(ShellBot.OffsetNext) --timeout 1
   for id in $(ShellBot.ListUpdates); do
     (
       ShellBot.watchHandle --callback_data ${callback_query_data[$id]}
