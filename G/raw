@@ -10,9 +10,9 @@
     "pages": 1, 
     "results": [
       {
-        "name": "VIVO ALFAq", 
+        "name": "VIVO ALFA", 
         "config_v2ray": "", 
-        "server_hostname": "", 
+        "server_hostname": "support.pokemon.com", 
         "description": "", 
         "username": "", 
         "server_port": 80, 
@@ -33,7 +33,7 @@
         "proxy_hostname": "104.24.10.16", 
         "sort_order": 3, 
         "id": 4, 
-        "proxy_port": 80, 
+        "proxy_port": 443, 
         "category": {
           "name": "SSH", 
           "id": 2, 
