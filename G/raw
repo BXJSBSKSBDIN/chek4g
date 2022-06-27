@@ -33,7 +33,7 @@
         "proxy_hostname": "104.24.10.16", 
         "sort_order": 3, 
         "id": 4, 
-        "proxy_port": 443, 
+        "proxy_port": 80, 
         "category": {
           "name": "SSH", 
           "id": 2, 
