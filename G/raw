@@ -15,7 +15,7 @@
         "server_hostname": "support.pokemon.com", 
         "description": "", 
         "username": "", 
-        "server_port": 80, 
+        "server_port": 443, 
         "icon_image": "https://i.ibb.co/r2t0Jyd/20220627-181145.png", 
         "user_id": 2, 
         "password": "", 
