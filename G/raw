@@ -1,5 +1,5 @@
 {
-  "status": 201, 
+  "status": 202, 
   "data": {
     "prev_page": null, 
     "next_page": null, 
@@ -10,9 +10,9 @@
     "pages": 1, 
     "results": [
       {
-        "name": "VIVO ALFA", 
+        "name": "VIVO ALFAq", 
         "config_v2ray": "", 
-        "server_hostname": "support.pokemon.com", 
+        "server_hostname": "", 
         "description": "", 
         "username": "", 
         "server_port": 80, 
@@ -23,7 +23,7 @@
         "category_id": 1, 
         "v2ray_uuid": "", 
         "primary_dns_server": "8.8.8.8", 
-        "payload": "GET wss://support.pokemon.com HTTP/1.1[crlf]Host: teste.alfalemos.xyz[crlf]Upgrade: websockt[crlf][crlf]", 
+        "payload": "GET / HTTP/1.1[crlf]Host: teste.alfalemos.xyz[crlf]Upgrade: websockt[crlf][crlf]", 
         "status": "ACTIVE", 
         "secondary_dns_server": "8.8.4.4", 
         "sni": "support.pokemon.com", 
@@ -33,7 +33,7 @@
         "proxy_hostname": "104.24.10.16", 
         "sort_order": 3, 
         "id": 4, 
-        "proxy_port": 443, 
+        "proxy_port": 80, 
         "category": {
           "name": "SSH", 
           "id": 2, 
