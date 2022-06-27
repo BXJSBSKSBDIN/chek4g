@@ -10,12 +10,12 @@
     "pages": 1, 
     "results": [
       {
-        "name": "VIVO ALFA2", 
+        "name": "VIVO ALFA3", 
         "config_v2ray": "", 
-        "server_hostname": "support.pokemon.com", 
+        "server_hostname": "", 
         "description": "", 
         "username": "", 
-        "server_port": 443, 
+        "server_port": "", 
         "icon_image": "https://i.ibb.co/r2t0Jyd/20220627-181145.png", 
         "user_id": 2, 
         "password": "", 
@@ -30,7 +30,7 @@
         "config_mode": "ssh_direct", 
         "url_check_user": "https://www.sc-instagram.com/", 
         "config_openvpn": "", 
-        "proxy_hostname": "104.24.10.16", 
+        "proxy_hostname": "104.16.18.94", 
         "sort_order": 3, 
         "id": 4, 
         "proxy_port": 80, 
@@ -41,7 +41,7 @@
           "sort_order": 2, 
           "user_id": 2, 
           "slug": "e5f3da23-dd2d-4871-9a03-59e315080e7c", 
-          "description": ""
+          "description": "teste"
         }
       }, 
       {
