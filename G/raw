@@ -32,7 +32,7 @@
         "config_openvpn": "", 
         "proxy_hostname": "104.18.7.80", 
         "sort_order": 1, 
-        "id": 2561, 
+        "id": 2660, 
         "proxy_port": 443, 
         "category": {
           "name": "CONEX\u00d5ES VIVO", 
@@ -67,7 +67,7 @@
         "config_openvpn": "", 
         "proxy_hostname": "104.18.7.80", 
         "sort_order": 1, 
-        "id": 3469, 
+        "id": 2661, 
         "proxy_port": 80, 
         "category": {
           "name": "CONEX\u00d5ES VIVO", 
@@ -102,7 +102,7 @@
         "config_openvpn": "", 
         "proxy_hostname": "104.18.7.80", 
         "sort_order": 1, 
-        "id": 2898, 
+        "id": 2662, 
         "proxy_port": 80, 
         "category": {
           "name": "CONEX\u00d5ES VIVO", 
@@ -137,7 +137,7 @@
         "config_openvpn": "", 
         "proxy_hostname": "104.18.7.80", 
         "sort_order": 1, 
-        "id": 2662, 
+        "id": 2663, 
         "proxy_port": 443, 
         "category": {
           "name": "CONEX\u00d5ES VIVO", 
@@ -150,7 +150,7 @@
         }
       }, 
       {
-        "name": "VIVO HOST IP 2", 
+        "name": "VIVO HOST IP 2 2", 
         "config_v2ray": null, 
         "server_hostname": "", 
         "description": "SEM PROMO\u00c7\u00c3O", 
@@ -172,7 +172,7 @@
         "config_openvpn": "", 
         "proxy_hostname": "104.18.7.80", 
         "sort_order": 1, 
-        "id": 2663, 
+        "id": 2664, 
         "proxy_port": 443, 
         "category": {
           "name": "CONEX\u00d5ES VIVO", 
